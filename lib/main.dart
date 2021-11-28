@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:product_catelog/screens/home_page.dart';
 import 'package:product_catelog/screens/login_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:product_catelog/utils/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // home: const HomePage(),
+      // debugShowCheckedModeBanner: false,   // to remove debug banner
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.lato().fontFamily,
@@ -22,11 +24,11 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
-      initialRoute: '/login',
+      initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
-        '/home': (context) => const HomePage(),
-        '/login': (context) => const Login(),
+        '/': (context) => const Login(),
+        AppRoutes.homeRoute: (context) => const HomePage(),
+        AppRoutes.loginRoute: (context) => const Login(),
       },
     );
   }
