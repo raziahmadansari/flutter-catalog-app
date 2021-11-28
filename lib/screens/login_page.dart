@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:product_catelog/utils/routes.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  String username = '';
+  bool isFormSubmitted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +26,9 @@ class Login extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Text(
-              'Welcome',
-              style: TextStyle(
+            Text(
+              'Welcome $username',
+              style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
@@ -38,6 +46,11 @@ class Login extends StatelessWidget {
                       hintText: 'Enter username',
                       labelText: 'Username',
                     ),
+                    onChanged: (value) {
+                      setState(() {
+                        username = value;
+                      });
+                    },
                   ),
                   TextFormField(
                     obscureText: true,
@@ -50,15 +63,48 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  ElevatedButton(
-                    onPressed: () {
+                  InkWell(
+                    onTap: () async {
+                      setState(() {
+                        isFormSubmitted = !isFormSubmitted;
+                      });
+                      await Future.delayed(const Duration(seconds: 1));
                       Navigator.pushNamed(context, AppRoutes.homeRoute);
                     },
-                    style: TextButton.styleFrom(
-                      minimumSize: const Size(150, 40),
+                    child: AnimatedContainer(
+                      duration: const Duration(seconds: 1),
+                      height: 50,
+                      width: isFormSubmitted ? 50 : 150,
+                      alignment: Alignment.center,
+                      child: isFormSubmitted
+                          ? const Icon(
+                              Icons.done,
+                              color: Colors.white,
+                            )
+                          : const Text(
+                              'Login',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                      decoration: BoxDecoration(
+                        color: Colors.deepPurple,
+                        borderRadius:
+                            BorderRadius.circular(isFormSubmitted ? 50 : 8),
+                      ),
                     ),
-                    child: const Text('Sign in'),
                   ),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     Navigator.pushNamed(context, AppRoutes.homeRoute);
+                  //   },
+                  //   style: TextButton.styleFrom(
+                  //     minimumSize: const Size(150, 40),
+                  //   ),
+                  //   child: const Text('Login'),
+                  // ),
                 ],
               ),
             ),
