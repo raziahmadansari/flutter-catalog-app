@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // home: const HomePage(),
-      // debugShowCheckedModeBanner: false,   // to remove debug banner
+      debugShowCheckedModeBanner: false, // to remove debug banner
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.lato().fontFamily,
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
-      initialRoute: '/',
+      initialRoute: AppRoutes.homeRoute,
       routes: {
         '/': (context) => const Login(),
         AppRoutes.homeRoute: (context) => const HomePage(),

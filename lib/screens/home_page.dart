@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:product_catelog/widgets/drawer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,10 +11,10 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Criminals'),
       ),
-      drawer: const Drawer(),
       body: const Center(
         child: Text('Home Page'),
       ),
+      drawer: const AppDrawer(),
     );
   }
 }
